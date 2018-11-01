@@ -28,6 +28,7 @@ db.open().then(() => {
 			console.error(err);
 		else {
 			console.log(JSON.parse(jsonString));
+			ipcRenderer.send('postmandump', jsonString);
 		}
 	});
 })

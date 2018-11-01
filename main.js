@@ -1,5 +1,6 @@
 // Modules to control application life and create native browser window
 const ncp = require('ncp').ncp;
+const fs = require('fs');
 const os = require('os');
 const {app, BrowserWindow, ipcMain} = require('electron')
 
@@ -81,9 +82,26 @@ app.on('activate', function () {
 ipcMain.on('asynchronous-message', (event, arg) => {
   console.log(arg) // prints "ping"
   event.sender.send('asynchronous-reply', 'pong')
-})
+});
 
 ipcMain.on('synchronous-message', (event, arg) => {
   console.log(arg) // prints "ping"
+  event.returnValue = 'pong'
+})
+
+function writeFile(data) {
+  fs.writeFile("./postmandata.json", data, function(err) {
+    if(err) {
+        return console.log(err);
+    }
+
+    console.log("The file was saved!");
+  });   
+}
+
+
+ipcMain.on('postmandump', (event, arg) => {
+  
+  writeFile(arg);
   event.returnValue = 'pong'
 })
