@@ -1,5 +1,5 @@
 {
-  "name": "electron-quick-start",
+  "name": "postmanelectron",
   "version": "1.0.0",
   "description": "A minimal Electron application",
   "main": "main.js",
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "dexie": "^2.0.4",
-    "indexeddb-export-import": "^1.0.4"
+    "indexeddb-export-import": "^1.0.4",
+    "ncp": "^2.0.0"
   }
 }
